@@ -17,11 +17,11 @@ export default function Footer() {
 
           <div className="flex gap-8 md:gap-12 flex-wrap">
             <div>
-              <p className="text-2xl font-black text-white">5+</p>
+              <p className="text-2xl font-black text-white">1+</p>
               <p className="text-[10px] text-white/35 uppercase tracking-widest mt-1">Years Experience</p>
             </div>
             <div>
-              <p className="text-2xl font-black text-white">50+</p>
+              <p className="text-2xl font-black text-white">10+</p>
               <p className="text-[10px] text-white/35 uppercase tracking-widest mt-1">Projects Done</p>
             </div>
             <div>
