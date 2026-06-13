@@ -16,7 +16,7 @@ export default function About() {
   const rightRef = useReveal(150);
 
   return (
-    <section id="about" className="bg-[#E8180C] px-6 md:px-16 py-20 md:py-28">
+    <section id="about" className="bg-[#E8180C] px-6 md:px-16 py-14 md:py-20">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
 
         {/* ── Left — image card ── */}

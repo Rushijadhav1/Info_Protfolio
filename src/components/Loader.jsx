@@ -1,26 +1,55 @@
-import { useEffect, useState } from "react";
+import  { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Loader() {
-  const [hide, setHide] = useState(false);
-  const [gone, setGone] = useState(false);
+const Preloader = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setHide(true), 1400);
-    const t2 = setTimeout(() => setGone(true), 2100);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    // Wait for the water fill animation (1.5s) + a small pause (0.5s)
+    // before the shutter goes up smoothly.
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2200);
+    
+    return () => clearTimeout(timer);
   }, []);
 
-  if (gone) return null;
-
   return (
-    <div
-      className={`fixed inset-0 bg-[#E8180C] flex items-center justify-center z-[9999] transition-all duration-700 ${
-        hide ? "opacity-0 scale-105 pointer-events-none" : ""
-      }`}
-    >
-      <h1 className="text-[clamp(3rem,12vw,7rem)] font-black tracking-tight text-white animate-pulseIn">
-        Rushi<span className="text-black">.</span>
-      </h1>
-    </div>
+    <AnimatePresence>
+      {isLoading && (
+        <motion.div
+          key="preloader"
+          initial={{ y: 0 }}
+          exit={{ y: "-100%" }}
+          transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 w-full h-screen bg-[#ff2a2a] z-[100000] flex items-center justify-center"
+        >
+          {/* Logo Container */}
+          <motion.div 
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative text-5xl md:text-7xl font-black tracking-tighter"
+          >
+            {/* Background text (empty state) */}
+            <div className="text-red-900/30">
+              Rushikesh<span className="text-red-900/30">.</span>
+            </div>
+
+            {/* Foreground text (water fill state) */}
+            <motion.div 
+              className="absolute top-0 left-0 text-white overflow-hidden whitespace-nowrap"
+              initial={{ clipPath: 'inset(100% 0 0 0)' }}
+              animate={{ clipPath: 'inset(0% 0 0 0)' }}
+              transition={{ duration: 1.6, ease: "easeInOut", delay: 0.2 }}
+            >
+              Rushikesh<span className="text-black">.</span>
+            </motion.div>
+          </motion.div>
+
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
-}
+};
+
+export default Preloader;

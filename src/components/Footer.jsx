@@ -9,7 +9,7 @@ export default function Footer() {
             <p className="text-xl font-black tracking-tight">
               Rushi<span className="text-[#E8180C]">.</span>
             </p>
-            <p className="text-xs text-white/35 mt-2 max-w-[260px] leading-relaxed">
+            <p className="text-xs text-white/75 mt-2 max-w-[260px] leading-relaxed">
               Full Stack Developer — React, Node.js, TypeScript & more.
               Building fast, scalable web products.
             </p>
@@ -18,22 +18,22 @@ export default function Footer() {
           <div className="flex gap-8 md:gap-12 flex-wrap">
             <div>
               <p className="text-2xl font-black text-white">1+</p>
-              <p className="text-[10px] text-white/35 uppercase tracking-widest mt-1">Years Experience</p>
+              <p className="text-[10px] text-white/75 uppercase tracking-widest mt-1">Years Experience</p>
             </div>
             <div>
               <p className="text-2xl font-black text-white">10+</p>
-              <p className="text-[10px] text-white/35 uppercase tracking-widest mt-1">Projects Done</p>
+              <p className="text-[10px] text-white/75 uppercase tracking-widest mt-1">Projects Done</p>
             </div>
             <div>
               <p className="text-2xl font-black text-white">2026</p>
-              <p className="text-[10px] text-white/35 uppercase tracking-widest mt-1">Worldwide Available</p>
+              <p className="text-[10px] text-white/75 uppercase tracking-widest mt-1">Worldwide Available</p>
             </div>
           </div>
 
           <nav className="flex gap-5 md:gap-6 flex-wrap">
             {links.map((l) => (
               <a key={l} href={`#${l.toLowerCase()}`}
-                className="text-white/35 hover:text-white text-sm no-underline transition-colors">
+                className="text-white/75 hover:text-white text-sm no-underline transition-colors">
                 {l}
               </a>
             ))}
@@ -41,8 +41,8 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/5 pt-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-xs text-white/20">© 2026 Rushi. All rights reserved.</p>
-          <p className="text-xs text-white/20">Built with React & Tailwind CSS</p>
+          <p className="text-xs text-white/70">© 2026 Rushi. All rights reserved.</p>
+          <p className="text-xs text-white/70">Built with React & Tailwind CSS</p>
         </div>
       </div>
     </footer>

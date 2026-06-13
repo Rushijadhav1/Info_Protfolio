@@ -1,63 +1,126 @@
-import { useState } from "react";
-import { useReveal } from "../hooks/useReveal";
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-export default function Contact() {
-  const [sent, setSent] = useState(false);
-  const ref = useReveal();
+const Contact = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
 
-  const handleSend = () => {
-    setSent(true);
-    setTimeout(() => setSent(false), 2500);
-  };
+  // Parallax translation for the big text
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "30%"]);
 
   return (
-    <section id="contact" className="bg-white text-black overflow-hidden">
-
-      {/* Giant CONTACT text */}
-      <div
-        className="font-black leading-none text-black select-none pointer-events-none px-4 pt-6"
-        style={{ fontSize: "clamp(70px, 18vw, 210px)", letterSpacing: "-4px", lineHeight: 0.88 }}
+    <section ref={ref} id="contact" className="bg-[#0a0a0a] w-full min-h-screen relative overflow-hidden flex items-end pt-20 sm:pt-32 md:pt-64 pb-0 border-t border-gray-900">
+      {/* Background Text — reduced size */}
+      <motion.div
+        style={{ y }}
+        className="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-start px-6 md:px-16 overflow-hidden pointer-events-none z-0 pt-8 md:pt-10"
       >
-        CONTACT
-      </div>
+        <h1
+          className="text-[16vw] sm:text-[13vw] leading-[0.8] font-black text-white uppercase tracking-wide select-none scale-y-[1.2] sm:scale-y-[1.6] origin-top mt-4"
+          style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
+        >
+          Contact
+        </h1>
+      </motion.div>
 
-      <div className="h-6 bg-white" />
+      {/* Form Card Overlay */}
+      <div className="relative z-10 w-full flex justify-center items-end px-6 md:px-16">
+        <div
+          data-aos="fade-up"
+          className="bg-[#ff2a2a] w-full max-w-5xl p-8 md:p-16 rounded-t-3xl text-white flex flex-col justify-between"
+        >
+          <div className="text-xs font-bold tracking-[0.2em] mb-12 md:mb-20 uppercase opacity-90">
+            Reach Us
+          </div>
 
-      {/* Red form card */}
-      <div ref={ref} className="reveal bg-[#E8180C] mx-3 md:mx-6 rounded-t-2xl px-6 md:px-14 pt-10 pb-14">
-        <p className="text-[11px] font-bold tracking-[4px] uppercase text-white/60 mb-8">Reach Us</p>
+          <form className="flex flex-col gap-12 md:gap-16 w-full">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-20 w-full">
+              {/* Left Column */}
+              <div className="flex-1 flex flex-col gap-10">
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="First Name"
+                    className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
+                  />
+                </div>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Last Name"
+                    className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
+                  />
+                </div>
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
+                  />
+                </div>
+              </div>
 
-        {/* Form grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 border border-white/25 rounded-2xl overflow-hidden mb-5">
-          <input type="text" placeholder="First Name"
-            className="bg-transparent border-b border-white/25 md:border-r px-5 py-5 md:py-7 text-white placeholder-white/55 text-sm outline-none focus:bg-white/5 transition-colors" />
-          <textarea placeholder="Type your message here..." rows={4}
-            className="bg-transparent border-b border-white/25 px-5 py-5 text-white placeholder-white/55 text-sm outline-none resize-none focus:bg-white/5 transition-colors md:row-span-2"
-            style={{ minHeight: "140px" }} />
-          <input type="text" placeholder="Last Name"
-            className="bg-transparent border-white/25 md:border-r px-5 py-5 md:py-7 text-white placeholder-white/55 text-sm outline-none focus:bg-white/5 transition-colors border-b md:border-b-0" />
-        </div>
+              {/* Right Column */}
+              <div className="flex-1 flex flex-col">
+                <div className="relative h-full flex flex-col">
+                  <textarea
+                    id="message"
+                    placeholder="Type your message here"
+                    className="w-full h-full min-h-[120px] bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium resize-none rounded-none"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
 
-        <div className="border border-white/25 rounded-2xl overflow-hidden mb-8">
-          <input type="email" placeholder="Email"
-            className="w-full bg-transparent px-5 py-5 text-white placeholder-white/55 text-sm outline-none focus:bg-white/5 transition-colors" />
-        </div>
+            {/* Bottom Section */}
+            <div className="flex flex-col md:flex-row gap-12 mt-4">
+              {/* Left text */}
+              <div className="flex-1 flex items-start gap-4 text-sm font-medium text-white/90">
+                <input
+                  type="checkbox"
+                  id="permission"
+                  className="mt-1 w-4 h-4 rounded-sm border-white/40 bg-transparent text-white focus:ring-white focus:ring-offset-0 focus:ring-offset-transparent cursor-pointer"
+                  style={{ accentColor: "white" }}
+                />
+                <label htmlFor="permission" className="cursor-pointer max-w-[280px] leading-snug">
+                  I give permission to contact me at this email address.
+                </label>
+              </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-5">
-          <label className="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" className="w-4 h-4 rounded accent-black cursor-pointer flex-shrink-0" />
-            <span className="text-sm text-white/75 leading-relaxed">
-              I give permission to contact me at this email address.
-            </span>
-          </label>
-          <button onClick={handleSend}
-            className="bg-black text-white font-bold text-sm px-8 md:px-10 py-3.5 md:py-4 rounded-full flex items-center gap-3 hover:scale-105 active:scale-95 transition-transform ml-auto flex-shrink-0">
-            {sent ? "Sent! ✓" : (
-              <>Send <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></>
-            )}
-          </button>
+              {/* Right text & button */}
+              <div className="flex-1 flex flex-col gap-8 text-xs text-white/70 font-medium">
+                <p className="leading-relaxed max-w-[400px]">
+                  This site is protected by reCAPTCHA and the Google <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="#" className="underline hover:text-white transition-colors">Terms of Service</a> apply.
+                </p>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6">
+                  <p className="max-w-[250px] leading-relaxed">
+                    For information on how to unsubscribe, please review our <a href="#" className="underline hover:text-white transition-colors">privacy policy</a>.
+                  </p>
+
+                  <button
+                    type="submit"
+                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto"
+                  >
+                    Send
+                    <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Contact;

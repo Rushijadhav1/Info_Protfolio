@@ -1,172 +1,236 @@
-import { useReveal } from "../hooks/useReveal";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useRef, useState } from 'react';
+import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion';
 
-const steps = [
-  {
-    num: "01",
-    title: "Define",
-    desc: "We start by understanding your goals, user requirements, and technical constraints to lay a rock-solid foundation for the project.",
-    red: false,
-  },
-  {
-    num: "02",
-    title: "Design",
-    desc: "Crafting interfaces that are both beautiful and accessible, guaranteeing an outstanding user experience from the very first interaction.",
-    red: true,
-  },
-  {
-    num: "03",
-    title: "Build",
-    desc: "Developing scalable frontend architectures and secure backend systems using the latest modern tech stack.",
-    red: false,
-  },
-  {
-    num: "04",
-    title: "Launch",
-    desc: "Deploying with CI/CD pipelines, monitoring performance, and iterating fast based on real-world user feedback.",
-    red: false,
-  },
-];
+const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength, containerRef }) => {
+  const ref = useRef(null);
+  const [isActive, setIsActive] = useState(false);
 
-function ProcessCard({ step, delay, pinRef }) {
-  const cardRef = useReveal(delay);
+  useMotionValueEvent(pathLength, "change", (latest) => {
+    if (!ref.current || !containerRef.current) return;
+    
+    const cardRect = ref.current.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+    
+    const cardTopRelativeToContainer = cardRect.top - containerRect.top;
+    const containerHeight = containerRect.height;
+    
+    // Trigger when the line tip is 50px into the card
+    const triggerY = cardTopRelativeToContainer + 50;
+    const lineTipY = latest * containerHeight;
+    
+    if (lineTipY >= triggerY && !isActive) {
+      setIsActive(true);
+    } else if (lineTipY < triggerY && isActive) {
+      setIsActive(false);
+    }
+  });
+
   return (
-    <div
-      ref={cardRef}
-      className={`reveal relative rounded-3xl p-6 md:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 cursor-default ${
-        step.red ? "bg-[#E8180C] text-white" : "bg-white text-black"
+    <div 
+      ref={ref}
+      data-aos={aosType || "fade-up"} 
+      data-aos-delay={aosDelay}
+      className={`w-72 sm:w-80 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-700 z-10 ${className} ${
+        isActive ? 'bg-[#ff2a2a] border-red-400 shadow-[0_20px_50px_rgba(255,42,42,0.4)]' : 'bg-white border border-gray-200 shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]'
       }`}
     >
-      <div
-        ref={pinRef}
-        className={`absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-4 z-10 ${
-          step.red ? "bg-white border-[#E8180C]" : "bg-black border-white"
-        }`}
-      />
-      <p className={`text-[11px] font-bold tracking-widest mb-4 ${step.red ? "text-white/60" : "text-gray-400"}`}>
-        {step.num} /
-      </p>
-      <h3 className={`text-xl md:text-2xl font-extrabold mb-3 ${step.red ? "text-white" : "text-black"}`}>
-        {step.title}
-      </h3>
-      <p className={`text-sm leading-relaxed ${step.red ? "text-white/80" : "text-gray-500"}`}>
-        {step.desc}
-      </p>
+      {/* The hole punch */}
+      <div className="w-5 h-5 bg-gradient-to-br from-gray-300 to-gray-100 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] absolute top-4 border border-gray-300 z-10 flex items-center justify-center">
+        <div className="w-2 h-2 bg-gray-800 rounded-full opacity-20"></div>
+      </div>
+      
+      {/* Inner container */}
+      <div className={`w-full h-full rounded-[1.5rem] mt-8 p-8 flex flex-col min-h-[220px] transition-colors duration-700 ${
+        isActive ? 'bg-red-700/50' : 'bg-[#f4f4f4]'
+      }`}>
+        <span className={`text-xl font-bold mb-2 font-serif italic transition-colors duration-700 ${
+          isActive ? 'text-red-200' : 'text-gray-400'
+        }`}>{number}</span>
+        
+        <h3 className={`text-2xl font-black mb-3 tracking-tight transition-colors duration-700 ${
+          isActive ? 'text-white' : 'text-gray-900'
+        }`}>{title}</h3>
+        
+        <p className={`text-sm leading-relaxed font-medium transition-colors duration-700 ${
+          isActive ? 'text-red-100' : 'text-gray-500'
+        }`}>
+          {text}
+        </p>
+      </div>
     </div>
   );
-}
+};
 
-export default function HowWeWork() {
-  const headRef = useReveal();
-  const subRef  = useReveal(100);
+const Services = () => {
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
 
-  const pinRefs = useRef([null, null, null, null]);
-  const gridRef = useRef(null);
-  const [svgData, setSvgData] = useState({ paths: [], height: 0 });
-
-  const computePaths = useCallback(() => {
-    if (!gridRef.current) return;
-    const gridRect = gridRef.current.getBoundingClientRect();
-    const svgW = gridRect.width;
-
-    const points = pinRefs.current.map((pin) => {
-      if (!pin) return null;
-      const r = pin.getBoundingClientRect();
-      return {
-        x: r.left + r.width / 2 - gridRect.left,
-        y: r.top + r.height / 2 - gridRect.top,
-      };
-    });
-
-    if (points.some((p) => !p)) return;
-
-    const rows = [];
-    let currentRow = [points[0]];
-    for (let i = 1; i < points.length; i++) {
-      if (Math.abs(points[i].y - currentRow[0].y) < 60) {
-        currentRow.push(points[i]);
-      } else {
-        rows.push(currentRow);
-        currentRow = [points[i]];
-      }
-    }
-    rows.push(currentRow);
-
-    const newPaths = [];
-    rows.forEach((row) => {
-      if (row.length < 1) return;
-      const firstPin = row[0];
-      const lastPin  = row[row.length - 1];
-      const pinY = firstPin.y;
-      const arcY = pinY - 28;
-
-      newPaths.push({ d: `M -32 ${pinY} L ${firstPin.x} ${pinY}`, arrow: false });
-
-      for (let i = 0; i < row.length - 1; i++) {
-        const a  = row[i];
-        const b  = row[i + 1];
-        const mx = (a.x + b.x) / 2;
-        newPaths.push({ d: `M ${a.x} ${a.y} Q ${mx} ${arcY} ${b.x} ${b.y}`, arrow: true });
-      }
-
-      newPaths.push({ d: `M ${lastPin.x} ${pinY} L ${svgW + 32} ${pinY}`, arrow: false });
-    });
-
-    const maxY = Math.max(...points.map((p) => p.y)) + 20;
-    setSvgData({ paths: newPaths, height: maxY });
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(computePaths, 400);
-    window.addEventListener("resize", computePaths);
-    return () => { clearTimeout(t); window.removeEventListener("resize", computePaths); };
-  }, [computePaths]);
+  const pathLength = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 });
 
   return (
-    <section id="work" className="bg-gray-50 px-6 md:px-16 py-20 md:py-28 text-black">
-      <div className="max-w-6xl mx-auto">
-        <p className="text-[14px] font-bold tracking-[4px] uppercase text-gray-500 mb-5">How we work</p>
-        <h2 ref={headRef} className="reveal font-black leading-[1.05] tracking-tight max-w-2xl mb-5"
-          style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}>
-          Let us show you how we drive your brand to new heights
-        </h2>
-        <p ref={subRef} className="reveal text-gray-500 max-w-sm leading-relaxed mb-16 text-sm">
-          We follow a structured, creative, and highly technical approach to turn your ideas into robust full-stack applications.
-        </p>
-
-        <div className="relative -mx-6 md:-mx-16 px-6 md:px-16" ref={gridRef}>
-          {svgData.paths.length > 0 && (
-            <svg
-              className="absolute pointer-events-none z-0 overflow-visible"
-              style={{ top: 0, left: 0, width: "100%", height: svgData.height }}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <marker id="dashArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                  <path d="M2 2L8 5L2 8" fill="none" stroke="#0a0a0a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </marker>
-              </defs>
-              {svgData.paths.map((p, i) => (
-                <path key={i} d={p.d} fill="none" stroke="#0a0a0a" strokeWidth="1.5"
-                  strokeDasharray="6 5" strokeLinecap="round" opacity="0.25"
-                  markerEnd={p.arrow ? "url(#dashArrow)" : undefined}
-                />
-              ))}
-            </svg>
-          )}
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
-            {steps.map((s, i) => (
-              <ProcessCard
-                key={s.title}
-                step={s}
-                delay={i * 100}
-                pinRef={(el) => (pinRefs.current[i] = el)}
-              />
-            ))}
+    <section 
+      id="services"
+      ref={containerRef}
+      className="bg-white pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
+    >
+      <div className="max-w-6xl mx-auto relative md:h-[1350px]">
+        
+        {/* Header Content */}
+        <div data-aos="fade-up" className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0">
+          <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
+            How we work
           </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative">
+            Let us show you how we drive your brand to new heights
+            {/* Hand-drawn arrow */}
+            <svg className="absolute -bottom-10 right-10 w-12 h-12 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" className="hidden" />
+              <path d="M4 4 Q 10 10 15 15 M 15 15 L 10 15 M 15 15 L 15 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </h2>
+          <p className="text-gray-500 text-base md:text-lg max-w-sm font-medium leading-relaxed">
+            We follow a structured, creative, and highly technical approach to turn your ideas into robust full-stack applications.
+          </p>
         </div>
+
+        {/* Desktop SVG Animated Dashed Line */}
+        <svg 
+          className="hidden md:block absolute top-0 left-0 w-full h-[1350px] pointer-events-none z-0" 
+          viewBox="0 0 1000 1350" 
+          preserveAspectRatio="none"
+        >
+          {/* Faint background path (optional guide) */}
+          <path 
+            d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200" 
+            fill="none" 
+            stroke="#cbd5e1" 
+            strokeWidth="2" 
+            strokeDasharray="8 10" 
+          />
+
+          {/* Mask to reveal the dashed path based on scroll */}
+          <mask id="path-mask">
+            <motion.path 
+              d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200" 
+              fill="none" 
+              stroke="white" 
+              strokeWidth="20" 
+              style={{ pathLength }}
+            />
+          </mask>
+
+          {/* The actual dashed line that gets revealed */}
+          <path 
+            d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200" 
+            fill="none" 
+            stroke="black" 
+            strokeWidth="2" 
+            strokeDasharray="8 10" 
+            mask="url(#path-mask)"
+            className="drop-shadow-sm"
+          />
+        </svg>
+
+        {/* Mobile Animated Vertical Dashed Line */}
+        <svg 
+          className="md:hidden absolute top-0 left-[50%] -translate-x-1/2 w-4 h-[100%] pointer-events-none z-0" 
+          viewBox="0 0 4 100" 
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M 2,0 L 2,100" 
+            fill="none" 
+            stroke="#cbd5e1" 
+            strokeWidth="4" 
+            strokeDasharray="4 6" 
+            vectorEffect="non-scaling-stroke"
+          />
+          <mask id="path-mask-mobile">
+            <motion.path 
+              d="M 2,0 L 2,100" 
+              fill="none" 
+              stroke="white" 
+              strokeWidth="4" 
+              style={{ pathLength }}
+              vectorEffect="non-scaling-stroke"
+            />
+          </mask>
+          <path 
+            d="M 2,0 L 2,100" 
+            fill="none" 
+            stroke="black" 
+            strokeWidth="4" 
+            strokeDasharray="4 6" 
+            mask="url(#path-mask-mobile)"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
+        {/* Cards Container */}
+        <div className="flex flex-col gap-8 md:gap-12 items-center md:block relative z-10 w-full pt-4 md:pt-0 pb-12 md:pb-0">
+          
+          <TagCard 
+            number="01"
+            title="Define"
+            text="We start by understanding your goals, user requirements, and technical constraints to lay a rock-solid foundation for the project."
+            className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
+            aosType="fade-left"
+            aosDelay="100"
+            pathLength={pathLength}
+            containerRef={containerRef}
+          />
+
+          <TagCard 
+            number="02"
+            title="Design"
+            text="Creating intuitive, pixel-perfect user interfaces and wireframes that guarantee an engaging and accessible user experience."
+            className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
+            aosType="fade-right"
+            aosDelay="200"
+            pathLength={pathLength}
+            containerRef={containerRef}
+          />
+
+          <TagCard 
+            number="03"
+            title="Build"
+            text="Developing scalable frontend architectures and secure backend systems using the latest modern tech stack."
+            className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
+            aosType="fade-left"
+            aosDelay="300"
+            pathLength={pathLength}
+            containerRef={containerRef}
+          />
+
+          <TagCard 
+            number="04"
+            title="Launch"
+            text="Rigorous testing, optimization, and seamless deployment to cloud infrastructure, followed by ongoing support."
+            className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
+            aosType="fade-right"
+            aosDelay="400"
+            pathLength={pathLength}
+            containerRef={containerRef}
+          />
+
+          {/* Hand-drawn end text */}
+          <div 
+            data-aos="fade-in" 
+            data-aos-delay="600"
+            className="hidden md:block absolute top-[1250px] left-[60%] font-['Caveat',cursive] text-3xl text-gray-600 rotate-6"
+          >
+            Ready to be delivered!
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
-}
+};
+
+export default Services;
