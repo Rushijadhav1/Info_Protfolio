@@ -15,23 +15,29 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-[85vh] md:h-[90vh] w-full overflow-hidden flex items-center"
+      className="relative  min-h-screen md:h-[90vh] w-full overflow-hidden flex items-center"
     >
       {/* Background Image */}
-      <img
-        src={profileImg}
+      <img src={profileImg}
         alt="Rushikesh"
         draggable={false}
-        className="absolute inset-0 w-full h-full object-cover object-top md:object-center select-none"
+        className="
+    absolute inset-0
+    w-full h-full
+    object-cover
+    object-[55%_center]
+    md:object-center
+    select-none
+  "
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/30" />
 
       {/* Content */}
       <div
         ref={ref}
-        className="reveal relative z-20 w-full px-6 md:px-16 lg:px-24 pt-20 pb-12"
+        className="reveal relative z-20 w-full max-w-[95%] sm:max-w-[80%] px-5 md:px-16 lg:px-24 pt-16 pb-12"
       >
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm border border-white/10 rounded-full px-5 py-3 mb-4">
@@ -47,7 +53,7 @@ export default function Hero() {
 
         {/* Heading */}
         <h1
-          className="font-black text-white leading-[0.95] tracking-tight max-w-3xl"
+          className="font-black text-white leading-[0.95] tracking-tight max-w-3xl text-[2.8rem] sm:text-[3.5rem]  md:text-[5rem]"
           style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
         >
           Hi, I'm a
@@ -57,7 +63,7 @@ export default function Hero() {
 
         {/* Description */}
         <p
-          className="text-white/85 leading-relaxed max-w-xl mt-6"
+          className="text-white leading-relaxed max-w-xl mt-6"
           style={{ fontSize: "clamp(0.9rem, 1vw, 1rem)" }}
         >
           I build fast, scalable and modern web applications using React,
@@ -81,8 +87,6 @@ export default function Hero() {
             Contact Me
           </a>
         </div>
-
-       
       </div>
     </section>
   );
