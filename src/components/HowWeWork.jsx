@@ -75,16 +75,16 @@ const Services = () => {
     <section 
       id="services"
       ref={containerRef}
-      className="bg-black pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
+      className="bg-white pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
     >
       <div className="max-w-6xl mx-auto relative md:h-[1350px]">
         
         {/* Header Content */}
         <div data-aos="fade-up" className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0">
-          <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
+          <div className="inline-block border border-gray-400 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
             How we work
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-200 leading-[1.1] mb-6 tracking-tight relative">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-500 leading-[1.1] mb-6 tracking-tight relative">
             Let us show you how we drive your brand to new heights
             {/* Hand-drawn arrow */}
             <svg className="absolute -bottom-10 right-10 w-12 h-12 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,7 +92,7 @@ const Services = () => {
               <path d="M4 4 Q 10 10 15 15 M 15 15 L 10 15 M 15 15 L 15 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </h2>
-          <p className="text-gray-400 text-base md:text-lg max-w-sm font-medium leading-relaxed">
+          <p className="text-black text-base md:text-lg max-w-sm font-medium leading-relaxed">
             We follow a structured, creative, and highly technical approach to turn your ideas into robust full-stack applications.
           </p>
         </div>
