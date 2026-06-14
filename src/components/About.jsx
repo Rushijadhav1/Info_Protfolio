@@ -1,111 +1,142 @@
-import { useReveal } from "../hooks/useReveal";
+import { FaReact, FaNodeJs, FaJava, FaDocker } from 'react-icons/fa';
+import { SiPostgresql, SiSpringboot, SiTailwindcss } from 'react-icons/si';
 
-const stats = [
-  { num: "10+", label: "Projects Done" },
-  { num: "1+",  label: "Years Exp." },
+const techStack = [
+  { icon: <FaReact    />, label: 'React',       color: '#61DAFB', delay: '200' },
+  { icon: <FaNodeJs   />, label: 'Node.js',     color: '#68A063', delay: '300' },
+  { icon: <FaJava     />, label: 'Java',         color: '#f89820', delay: '400' },
+  { icon: <SiSpringboot/>,label: 'Spring Boot', color: '#6DB33F', delay: '500' },
+  { icon: <SiPostgresql/>,label: 'PostgreSQL',  color: '#336791', delay: '600' },
+  { icon: <SiTailwindcss/>,label:'Tailwind',    color: '#38BDF8', delay: '700' },
+  { icon: <FaDocker   />, label: 'Docker',       color: '#2496ED', delay: '800' },
 ];
 
-const highlights = [
-  { icon: "⚡", text: "Fast delivery, clean code" },
-  { icon: "🎨", text: "Pixel-perfect UI/UX" },
-  { icon: "🔒", text: "Secure & scalable architecture" },
-];
-
-export default function About() {
-  const leftRef  = useReveal();
-  const rightRef = useReveal(150);
-
+const About = () => {
   return (
-    <section id="about" className="bg-[#E8180C] px-6 md:px-16 py-14 md:py-20">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+    <section className="bg-[#ff2a2a] pt-20 pb-40 px-6 md:px-12 w-full relative overflow-hidden font-sans">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-start">
 
-        {/* ── Left — image card ── */}
-        <div ref={leftRef} className="reveal flex-shrink-0 w-full max-w-xs mx-auto lg:mx-0">
-          <div className="relative">
-            {/* Main card */}
-            <div className="w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl"
-              style={{ background: "linear-gradient(160deg,#c0130a 0%,#7a0808 100%)" }}>
-              {/* Abstract developer illustration */}
-              <div className="w-full h-full flex items-center justify-center relative">
-                <svg viewBox="0 0 300 400" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  {/* Background blobs */}
-                  <circle cx="150" cy="200" r="120" fill="rgba(255,255,255,0.03)"/>
-                  <circle cx="80" cy="300" r="80" fill="rgba(0,0,0,0.1)"/>
-                  {/* Monitor */}
-                  <rect x="60" y="120" width="180" height="120" rx="12" fill="#1a1a1a"/>
-                  <rect x="70" y="130" width="160" height="100" rx="8" fill="#0a0a0a"/>
-                  {/* Code lines on screen */}
-                  <rect x="82" y="145" width="60" height="6" rx="3" fill="#E8180C" opacity="0.9"/>
-                  <rect x="82" y="158" width="100" height="5" rx="3" fill="white" opacity="0.4"/>
-                  <rect x="82" y="170" width="80" height="5" rx="3" fill="white" opacity="0.3"/>
-                  <rect x="90" y="182" width="70" height="5" rx="3" fill="white" opacity="0.25"/>
-                  <rect x="82" y="194" width="90" height="5" rx="3" fill="#E8180C" opacity="0.5"/>
-                  <rect x="82" y="206" width="55" height="5" rx="3" fill="white" opacity="0.2"/>
-                  {/* Monitor stand */}
-                  <rect x="135" y="240" width="30" height="20" rx="4" fill="#1a1a1a"/>
-                  <rect x="110" y="258" width="80" height="8" rx="4" fill="#1a1a1a"/>
-                  {/* Keyboard */}
-                  <rect x="80" y="280" width="140" height="50" rx="8" fill="#1a1a1a"/>
-                  <rect x="90" y="288" width="120" height="6" rx="3" fill="#333"/>
-                  <rect x="90" y="300" width="120" height="6" rx="3" fill="#333"/>
-                  <rect x="90" y="312" width="90" height="6" rx="3" fill="#333"/>
-                  {/* Floating elements */}
-                  <circle cx="50" cy="150" r="18" fill="rgba(255,255,255,0.08)"/>
-                  <text x="43" y="155" fontSize="14" fill="white" opacity="0.6">⚛</text>
-                  <circle cx="255" cy="180" r="18" fill="rgba(0,0,0,0.2)"/>
-                  <text x="248" y="185" fontSize="12" fill="white" opacity="0.6">TS</text>
-                  <circle cx="40" cy="280" r="14" fill="rgba(255,255,255,0.06)"/>
-                  <text x="34" y="285" fontSize="11" fill="white" opacity="0.5">{ }</text>
-                </svg>
+        {/* ── LEFT: Glassmorphism Stats Card ── */}
+        <div
+          data-aos="fade-right"
+          data-aos-duration="700"
+          className="w-full md:w-[300px] shrink-0 mt-6 md:mt-8"
+        >
+          <div className="
+            relative rounded-2xl p-7
+            bg-white/10 backdrop-blur-md
+            border border-white/20
+            shadow-[0_8px_32px_rgba(0,0,0,0.25)]
+            hover:shadow-[0_16px_48px_rgba(0,0,0,0.35)]
+            hover:-translate-y-1
+            transition-all duration-500 ease-out
+          ">
+            <p className="text-xs font-semibold tracking-[0.25em] text-white/60 uppercase mb-4">
+              Developer Profile
+            </p>
+            <div className="h-px bg-white/15 mb-6" />
+
+            <div className="flex gap-8 mb-6">
+              <div>
+                <p className="text-5xl font-black text-white leading-none">5+</p>
+                <p className="text-xs text-white/70 mt-1 font-medium">Projects Built</p>
+              </div>
+              <div>
+                <p className="text-5xl font-black text-white leading-none">15+</p>
+                <p className="text-xs text-white/70 mt-1 font-medium">Technologies</p>
               </div>
             </div>
 
-            {/* Floating experience badge */}
-            <div className="absolute -bottom-5 -right-5 bg-black text-white rounded-2xl px-5 py-4 shadow-xl">
-              <p className="text-2xl font-black leading-none">1+</p>
-              <p className="text-[10px] tracking-widest uppercase text-white/50 mt-0.5">Years</p>
+            <div className="h-px bg-white/15 mb-6" />
+
+            <div className="flex flex-col gap-3">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 text-white text-sm font-semibold w-fit border border-white/10">
+                🎓 MCA Graduate
+              </span>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 text-white text-sm font-semibold w-fit border border-white/10">
+                ⚡ Full Stack Developer
+              </span>
+            </div>
+
+            <div className="mt-6 flex items-center gap-2 px-4 py-2 rounded-full bg-black/25 border border-white/10 w-fit">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-white text-xs font-semibold">Available for work</span>
             </div>
           </div>
         </div>
 
-        {/* ── Right — text content ── */}
-        <div ref={rightRef} className="reveal flex-1 text-white">
-          <p className="text-[14px] font-bold tracking-[4px] uppercase text-white/80 mb-4">About Me</p>
-
-          <h2 className="font-black leading-tight mb-6" style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}>
-            Building digital<br />
-            experiences that<br />
-            <span className="text-black">actually work.</span>
+        {/* ── RIGHT: Text + Tech Icons ── */}
+        <div
+          data-aos="fade-left"
+          data-aos-delay="150"
+          data-aos-duration="700"
+          className="flex-1 text-white mt-4 md:mt-8 relative z-20"
+        >
+          <h2 className="text-5xl md:text-6xl font-black text-black mb-5 leading-tight">
+            Hello!
           </h2>
 
-          <p className="text-white/75 leading-relaxed mb-8 max-w-lg" style={{ fontSize: "clamp(0.88rem, 1.2vw, 1rem)" }}>
-            I'm a Full Stack Developer passionate about crafting robust,
-            scalable web applications. With 1+ years of experience, I bridge
-            the gap between design and engineering — delivering products that
-            look great and perform even better.
+          <p className="text-base md:text-lg font-medium leading-relaxed max-w-2xl text-red-50 mb-10">
+            Hi, I'm <span className="font-bold text-white">Rushi</span> — an MCA Graduate and Full Stack
+            Developer passionate about building modern, scalable, and user-focused web applications using{' '}
+            <span className="font-bold text-white">React, Node.js, Java, Spring Boot, PostgreSQL,</span> and{' '}
+            <span className="font-bold text-white">Docker</span>. I enjoy transforming ideas into clean,
+            efficient, and impactful digital experiences.
           </p>
 
-          {/* Highlights */}
-          <div className="flex flex-col gap-3 mb-10">
-            {highlights.map((h) => (
-              <div key={h.text} className="flex items-center gap-3">
-                <span className="text-lg">{h.icon}</span>
-                <span className="text-sm font-semibold text-white/80">{h.text}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Stats */}
-          <div className="flex gap-8 flex-wrap pt-8 border-t border-white/15">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p className="text-4xl font-black text-white leading-none">{s.num}</p>
-                <p className="text-[10px] tracking-widest uppercase text-white/80 mt-1.5">{s.label}</p>
+          {/* ── Tech Icon Grid ── */}
+          <div className="flex flex-wrap gap-4">
+            {techStack.map(({ icon, label, color, delay }) => (
+              <div
+                key={label}
+                data-aos="zoom-in"
+                data-aos-delay={delay}
+                className="group flex flex-col items-center gap-2"
+              >
+                <div className="
+                  w-16 h-16 md:w-[72px] md:h-[72px]
+                  flex items-center justify-center
+                  rounded-2xl
+                  bg-white/10 border border-white/15
+                  shadow-[0_4px_20px_rgba(0,0,0,0.2)]
+                  group-hover:bg-white/20
+                  group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
+                  group-hover:-translate-y-2
+                  transition-all duration-300 ease-out
+                "
+                  style={{ '--icon-color': color }}
+                >
+                  <span style={{ color, fontSize: '2rem' }} className="drop-shadow-lg">
+                    {icon}
+                  </span>
+                </div>
+                <span className="text-[11px] text-white/65 font-medium tracking-wide">{label}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* ── Torn paper divider ── */}
+      <div className="absolute bottom-0 left-0 w-full pointer-events-none z-30 transform translate-y-1">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 fill-white">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.62,189.5,99.8,242.79,81.82,282.88,63.6,321.39,56.44Z" />
+        </svg>
+      </div>
+
+      {/* ── Decorative stars ── */}
+      <div className="absolute top-10 right-10 md:right-20 text-black opacity-30 animate-pulse">
+        <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0l2.5 8.5L23 12l-8.5 2.5L12 23l-2.5-8.5L1 12l8.5-2.5z" />
+        </svg>
+      </div>
+      <div className="absolute bottom-32 left-4 md:left-20 text-black opacity-30 animate-pulse" style={{ animationDelay: '1s' }}>
+        <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0l2.5 8.5L23 12l-8.5 2.5L12 23l-2.5-8.5L1 12l8.5-2.5z" />
+        </svg>
+      </div>
     </section>
   );
-}
+};
+
+export default About;

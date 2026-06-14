@@ -49,28 +49,38 @@ const skills = [
         <path d="M21.62 11.108l-8.73-8.73a1.286 1.286 0 00-1.818 0L9.256 4.193l2.302 2.302a1.53 1.53 0 011.927 1.948l2.22 2.22a1.53 1.53 0 11-.92.918l-2.07-2.07v5.45a1.53 1.53 0 11-1.258-.046V9.45a1.53 1.53 0 01-.83-2.01L8.327 5.14l-5.94 5.94a1.286 1.286 0 000 1.818l8.73 8.73a1.286 1.286 0 001.818 0l8.685-8.685a1.286 1.286 0 000-1.818z"/>
       </svg>
   )},
-  { name: "JWT", icon: (
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
-        <rect x="3" y="10" width="18" height="11" rx="2" fill="#fff"/>
-        <path d="M7 10V7a5 5 0 0110 0v3" stroke="#fff" strokeWidth="2" fill="none"/>
-        <circle cx="12" cy="15" r="1.8" fill="#E8180C"/>
-      </svg>
-  )},
-  { name: "REST API", icon: (
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
-        <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="1.5" fill="none"/>
-        <path d="M8 9l-2 3 2 3M16 9l2 3-2 3M13 7l-2 10" stroke="#fff" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-  )},
-  { name: "Figma", icon: (
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
-        <path d="M8 2h4a4 4 0 010 8H8V2z" fill="#fff" opacity="0.9"/>
-        <path d="M8 10h4a4 4 0 010 8H8v-8z" fill="#fff" opacity="0.7"/>
-        <path d="M8 18a4 4 0 008 0" fill="#fff" opacity="0.5"/>
-        <path d="M4 6a4 4 0 014-4H8v8H4z" fill="#fff" opacity="0.6"/>
-        <path d="M4 14a4 4 0 014-4 4 4 0 010 8 4 4 0 01-4-4z" fill="#fff" opacity="0.4"/>
-      </svg>
-  )},
+ {
+  name: "Python",
+  icon: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+      <path
+        d="M12 4c-4 0-4 2-4 4v2h8v1H6c-2 0-3 1-3 3v2c0 2 1 4 4 4h2v-3c0-2 1-3 3-3h4c2 0 3-1 3-3V8c0-2-1-4-4-4h-3z"
+        fill="#fff"
+      />
+      <circle cx="10" cy="6.5" r="0.8" fill="#0a0a0a" />
+      <circle cx="14" cy="17.5" r="0.8" fill="#0a0a0a" />
+    </svg>
+  ),
+},
+  {
+  name: "JavaScript",
+  icon: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+      <rect x="4" y="4" width="16" height="16" rx="2" fill="#fff"/>
+      <path d="M10 9v6c0 1-.5 1.5-1.5 1.5-.7 0-1.2-.2-1.7-.7l.8-1.2c.2.3.4.4.7.4.4 0 .7-.2.7-.8V9h1zm3.5 5.5c.3.5.8.8 1.5.8.6 0 1-.3 1-.7 0-.5-.4-.7-1.1-1l-.4-.2c-1.1-.5-1.8-1-1.8-2.2 0-1.1.8-2 2.2-2 .9 0 1.6.3 2.1 1.1l-1.1.7c-.2-.4-.5-.5-.9-.5s-.7.2-.7.6c0 .4.2.6.9.8l.4.2c1.3.6 2 1.1 2 2.4 0 1.4-1.1 2.2-2.6 2.2-1.4 0-2.3-.7-2.8-1.6l1.3-.6z" fill="#0a0a0a"/>
+    </svg>
+  ),
+},
+{
+  name: "Java",
+  icon: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+      <path d="M12 4c-2 2 2 3 0 5-2 2-4 3 0 5" stroke="#fff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M8 16c0 1 2 2 4 2s4-1 4-2" stroke="#fff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M9 19h6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
+},
   { name: "GitHub", icon: (
       <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
         <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7C6.73 19.91 6.14 18 6.14 18c-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0022 12c0-5.52-4.48-10-10-10z"/>
@@ -137,7 +147,7 @@ export default function Skills() {
         style={{ background: "radial-gradient(circle, rgba(232,24,12,0.05) 0%, transparent 70%)" }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <p className="text-[11px] font-bold tracking-[4px] uppercase text-[#E8180C] mb-4">My Toolkit</p>
+        <p className="text-[14px] font-bold tracking-[4px] uppercase text-[#E8180C] mb-2">My Toolkit</p>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16 md:mb-20">
           <div>
@@ -145,14 +155,14 @@ export default function Skills() {
               style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
               Skills &amp; Technologies
             </h2>
-            <p ref={subRef} className="reveal text-white/45 max-w-md leading-relaxed text-sm">
+            <p ref={subRef} className="reveal text-white/75 max-w-md leading-relaxed text-sm">
               From frontend to backend, cloud to databases — here's the stack I work with daily.
             </p>
           </div>
 
           <div className="flex gap-3 flex-wrap">
-            {["12 Technologies", "1+ Years", "Production Ready"].map(t => (
-              <span key={t} className="text-[11px] font-semibold bg-white/5 border border-white/10 text-white/50 px-3 py-1.5 rounded-full whitespace-nowrap">
+            {["12+ Technologies", "1+ Years", "Production Ready"].map(t => (
+              <span key={t} className="flex-shrink-0 border border-white/15 hover:border-[#E8180C] text-white/60 hover:text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-all no-underline self-start md:self-auto">
                 {t}
               </span>
             ))}

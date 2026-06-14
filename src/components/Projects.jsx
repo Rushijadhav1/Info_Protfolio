@@ -51,31 +51,31 @@ const projects = [
     ),
   },
   {
-    tag: "SaaS Dashboard",
-    title: "DataPulse",
-    subtitle: "Analytics Platform",
-    desc: "Real-time analytics dashboard with customizable widgets, team collaboration, role-based access, and one-click export to PDF/CSV.",
-    tech: ["React", "Node.js", "PostgreSQL", "WebSockets"],
-    liveUrl: "#",
-    githubUrl: "#",
-    stats: [
-      { label: "Metrics", val: "50+" },
-      { label: "Latency", val: "< 1s" },
-    ],
-  },
+  tag: "Weather",
+  title: "Weather App",
+  subtitle: "Real-Time Weather Forecast",
+  desc: "A responsive weather application that provides real-time weather updates, temperature, humidity, wind speed, and location-based forecasts using external weather APIs.",
+  tech: ["React", "JavaScript", "Weather API", "CSS"],
+  liveUrl: "#",
+  githubUrl: "https://github.com/Rushijadhav1/Weather_Project",
+  stats: [
+    { label: "Forecast", val: "5 Days" },
+    { label: "Updates", val: "Real-Time" },
+  ],
+},
   {
-    tag: "Real-Time App",
-    title: "ChatNest",
-    subtitle: "Messaging Platform",
-    desc: "WebSocket-powered messaging with rooms, DMs, file sharing, voice notes, and end-to-end encryption for thousands of concurrent users.",
-    tech: ["Socket.io", "Express", "Redis", "React"],
-    liveUrl: "#",
-    githubUrl: "#",
-    stats: [
-      { label: "Latency", val: "< 50ms" },
-      { label: "Concurrent", val: "5k+" },
-    ],
-  },
+  tag: "Management System",
+  title: "Smart Library Management System",
+  subtitle: "Digital Library Solution",
+  desc: "Developed a modern library management platform with secure authentication, book catalog management, issue and return tracking, member management, and real-time search functionality. Designed to streamline library operations and improve record management efficiency.",
+  tech: ["HTML", "CSS", "Python", "MySQL", "JavaScript"],
+  liveUrl: "#",
+  githubUrl: "https://github.com/Rushijadhav1/Smart_Library_Management_System",
+  stats: [
+    { label: "Books", val: "1000+" },
+    { label: "Features", val: "CRUD" },
+  ],
+}
 ];
 
 function FeaturedCard({ p, delay }) {
@@ -195,7 +195,7 @@ export default function Projects() {
         style={{ background: "radial-gradient(circle, rgba(232,24,12,0.04) 0%, transparent 70%)" }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <p className="text-[11px] font-bold tracking-[4px] uppercase text-[#E8180C] mb-4">Selected Work</p>
+        <p className="text-[14px] font-bold tracking-[4px] uppercase text-[#E8180C] mb-2">Selected Work</p>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
           <div>

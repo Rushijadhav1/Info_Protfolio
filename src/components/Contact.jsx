@@ -18,13 +18,12 @@ const Contact = () => {
     e.preventDefault();
     setStatus("sending");
 
-    emailjs
-      .sendForm(
-        "service_n05rb62",   // 👈 replace with your EmailJS Service ID
-        "template_5g9lmxs",  // 👈 replace with your EmailJS Template ID
-        formRef.current,
-        "a0l0Mpwdrjc9Sia_4"    // 👈 replace with your EmailJS Public Key
-      )
+  emailjs.sendForm(
+  import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  formRef.current,
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+)
       .then(() => {
         setStatus("sent");
         formRef.current.reset();
@@ -130,13 +129,8 @@ const Contact = () => {
 
               {/* Right text & button */}
               <div className="flex-1 flex flex-col gap-8 text-xs text-white/70 font-medium">
-                <p className="leading-relaxed max-w-[400px]">
-                  This site is protected by reCAPTCHA and the Google <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="#" className="underline hover:text-white transition-colors">Terms of Service</a> apply.
-                </p>
+               
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6">
-                  <p className="max-w-[250px] leading-relaxed">
-                    For information on how to unsubscribe, please review our <a href="#" className="underline hover:text-white transition-colors">privacy policy</a>.
-                  </p>
 
                   <button
                     type="submit"
@@ -159,10 +153,10 @@ const Contact = () => {
 
                 {/* Status message */}
                 {status === "sent" && (
-                  <p className="text-white font-bold">✅ Message sent! I'll get back to you soon.</p>
+                  <p className="text-green-200 font-bold">✅ Message sent! I'll get back to you soon.</p>
                 )}
                 {status === "error" && (
-                  <p className="text-white font-bold">❌ Something went wrong. Please try again.</p>
+                  <p className="text-red-200 font-bold">❌ Something went wrong. Please try again.</p>
                 )}
               </div>
             </div>
