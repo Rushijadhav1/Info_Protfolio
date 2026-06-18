@@ -57,8 +57,8 @@ const skills = [
         d="M12 4c-4 0-4 2-4 4v2h8v1H6c-2 0-3 1-3 3v2c0 2 1 4 4 4h2v-3c0-2 1-3 3-3h4c2 0 3-1 3-3V8c0-2-1-4-4-4h-3z"
         fill="#fff"
       />
-      <circle cx="10" cy="6.5" r="0.8" fill="#0a0a0a" />
-      <circle cx="14" cy="17.5" r="0.8" fill="#0a0a0a" />
+      <circle cx="10" cy="6.5" r="0.8" fill="#111827" />
+      <circle cx="14" cy="17.5" r="0.8" fill="#111827" />
     </svg>
   ),
 },
@@ -67,7 +67,7 @@ const skills = [
   icon: (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
       <rect x="4" y="4" width="16" height="16" rx="2" fill="#fff"/>
-      <path d="M10 9v6c0 1-.5 1.5-1.5 1.5-.7 0-1.2-.2-1.7-.7l.8-1.2c.2.3.4.4.7.4.4 0 .7-.2.7-.8V9h1zm3.5 5.5c.3.5.8.8 1.5.8.6 0 1-.3 1-.7 0-.5-.4-.7-1.1-1l-.4-.2c-1.1-.5-1.8-1-1.8-2.2 0-1.1.8-2 2.2-2 .9 0 1.6.3 2.1 1.1l-1.1.7c-.2-.4-.5-.5-.9-.5s-.7.2-.7.6c0 .4.2.6.9.8l.4.2c1.3.6 2 1.1 2 2.4 0 1.4-1.1 2.2-2.6 2.2-1.4 0-2.3-.7-2.8-1.6l1.3-.6z" fill="#0a0a0a"/>
+      <path d="M10 9v6c0 1-.5 1.5-1.5 1.5-.7 0-1.2-.2-1.7-.7l.8-1.2c.2.3.4.4.7.4.4 0 .7-.2.7-.8V9h1zm3.5 5.5c.3.5.8.8 1.5.8.6 0 1-.3 1-.7 0-.5-.4-.7-1.1-1l-.4-.2c-1.1-.5-1.8-1-1.8-2.2 0-1.1.8-2 2.2-2 .9 0 1.6.3 2.1 1.1l-1.1.7c-.2-.4-.5-.5-.9-.5s-.7.2-.7.6c0 .4.2.6.9.8l.4.2c1.3.6 2 1.1 2 2.4 0 1.4-1.1 2.2-2.6 2.2-1.4 0-2.3-.7-2.8-1.6l1.3-.6z" fill="#111827"/>
     </svg>
   ),
 },
@@ -94,11 +94,11 @@ function SkillNode({ skill, index, circleRef }) {
     <div ref={ref} className="reveal group flex flex-col items-center gap-3 relative z-10">
       <div
         ref={circleRef}
-        className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#1a0a09] border-2 border-[#E8180C]/30 flex items-center justify-center transition-all duration-300 group-hover:border-[#E8180C] group-hover:scale-110 group-hover:bg-[#E8180C]/15 group-hover:shadow-[0_0_30px_rgba(232,24,12,0.4)]"
+        className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#1a0a09] border-2 border-[#1E3A8A]/30 flex items-center justify-center transition-all duration-300 group-hover:border-[#1E3A8A] group-hover:scale-110 group-hover:bg-[#1E3A8A]/15 group-hover:shadow-[0_0_30px_rgba(232,24,12,0.4)]"
       >
         {skill.icon}
       </div>
-      <span className="text-xs font-semibold text-white/60 group-hover:text-white transition-colors text-center">{skill.name}</span>
+      <span className="text-xs font-semibold text-black group-hover:text-gray-700 transition-colors text-center">{skill.name}</span>
     </div>
   );
 }
@@ -141,28 +141,28 @@ export default function Skills() {
   }, [computeLines]);
 
   return (
-    <section id="skills" className="bg-[#0a0a0a] px-6 md:px-16 py-20 md:py-28 relative overflow-hidden">
+    <section id="skills" className="bg-white px-6 md:px-16 py-20 md:py-28 relative overflow-hidden">
       {/* Subtle bg glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(232,24,12,0.05) 0%, transparent 70%)" }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <p className="text-[14px] font-bold tracking-[4px] uppercase text-[#E8180C] mb-2">My Toolkit</p>
+        <p className="text-[14px] font-bold tracking-[4px] uppercase text-[#1E3A8A] mb-2">My Toolkit</p>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16 md:mb-20">
           <div>
-            <h2 ref={headRef} className="reveal font-black tracking-tight text-white mb-3"
+            <h2 ref={headRef} className="reveal font-black tracking-tight text-black mb-3"
               style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
               Skills &amp; Technologies
             </h2>
-            <p ref={subRef} className="reveal text-white/75 max-w-md leading-relaxed text-sm">
+            <p ref={subRef} className="reveal text-black max-w-md leading-relaxed text-sm">
               From frontend to backend, cloud to databases — here's the stack I work with daily.
             </p>
           </div>
 
           <div className="flex gap-3 flex-wrap">
             {["12+ Technologies", "1+ Years", "Production Ready"].map(t => (
-              <span key={t} className="flex-shrink-0 border border-white/15 hover:border-[#E8180C] text-white/60 hover:text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-all no-underline self-start md:self-auto">
+              <span key={t} className="flex-shrink-0 border border-white/15 hover:border-[#1E3A8A] text-black hover:text-gray-700 text-xs font-semibold px-5 py-2.5 rounded-full transition-all no-underline self-start md:self-auto">
                 {t}
               </span>
             ))}
@@ -177,7 +177,7 @@ export default function Skills() {
               {paths.map((p, i) => (
                 <line key={i}
                   x1={p.a.x} y1={p.a.y} x2={p.b.x} y2={p.b.y}
-                  stroke="#E8180C" strokeOpacity="0.15" strokeWidth="1.5" strokeDasharray="4 6"
+                  stroke="#1E3A8A" strokeOpacity="0.15" strokeWidth="1.5" strokeDasharray="4 6"
                 />
               ))}
             </svg>

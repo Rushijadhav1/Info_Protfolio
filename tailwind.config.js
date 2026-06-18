@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        red: {
-          primary: "#E8180C",
-          dark: "#c0130a",
-          deeper: "#7a0808",
+        brand: {
+          primary: "#1E3A8A",
+          dark: "#1D4ED8",
+          deeper: "#1E3A8A",
         },
       },
       fontFamily: {

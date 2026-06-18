@@ -8,7 +8,7 @@ export default function Ticker() {
         {doubled.map((item, i) => (
           <span key={i} className="flex items-center gap-14">
             <span className="text-xs font-bold tracking-[3px] uppercase text-white/85">{item}</span>
-            <span className="text-[#E8180C] text-xs">★</span>
+            <span className="text-[#1E3A8A] text-xs">★</span>
           </span>
         ))}
       </div>

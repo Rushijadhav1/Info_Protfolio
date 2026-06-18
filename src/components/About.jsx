@@ -13,7 +13,7 @@ const techStack = [
 
 const About = () => {
   return (
-    <section className="bg-[#ff2a2a] pt-20 pb-40 px-6 md:px-12 w-full relative overflow-hidden font-sans">
+    <section className="bg-[#1E3A8A] pt-20 pb-40 px-6 md:px-12 w-full relative overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-start">
 
         {/* ── LEFT: Glassmorphism Stats Card ── */}
@@ -76,7 +76,7 @@ const About = () => {
             Hello!
           </h2>
 
-          <p className="text-base md:text-lg font-medium leading-relaxed max-w-2xl text-red-50 mb-10">
+          <p className="text-base md:text-lg font-medium leading-relaxed max-w-2xl text-blue-50 mb-10">
             Hi, I'm <span className="font-bold text-white">Rushi</span> — an MCA Graduate and Full Stack
             Developer passionate about building modern, scalable, and user-focused web applications using{' '}
             <span className="font-bold text-white">React, Node.js, Java, Spring Boot, PostgreSQL,</span> and{' '}
@@ -119,18 +119,18 @@ const About = () => {
 
       {/* ── Torn paper divider ── */}
       <div className="absolute bottom-0 left-0 w-full pointer-events-none z-30 transform translate-y-1">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 fill-white">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 fill-[#f8fafc]">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.62,189.5,99.8,242.79,81.82,282.88,63.6,321.39,56.44Z" />
         </svg>
       </div>
 
       {/* ── Decorative stars ── */}
-      <div className="absolute top-10 right-10 md:right-20 text-black opacity-30 animate-pulse">
+      <div className="absolute top-10 right-10 md:right-20 text-white opacity-20 animate-pulse">
         <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 0l2.5 8.5L23 12l-8.5 2.5L12 23l-2.5-8.5L1 12l8.5-2.5z" />
         </svg>
       </div>
-      <div className="absolute bottom-32 left-4 md:left-20 text-black opacity-30 animate-pulse" style={{ animationDelay: '1s' }}>
+      <div className="absolute bottom-32 left-4 md:left-20 text-white opacity-20 animate-pulse" style={{ animationDelay: '1s' }}>
         <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 0l2.5 8.5L23 12l-8.5 2.5L12 23l-2.5-8.5L1 12l8.5-2.5z" />
         </svg>

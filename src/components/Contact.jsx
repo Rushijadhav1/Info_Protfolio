@@ -37,14 +37,14 @@ const Contact = () => {
   };
 
   return (
-    <section ref={ref} id="contact" className="bg-[#0a0a0a] w-full min-h-screen relative overflow-hidden flex items-end pt-20 sm:pt-32 md:pt-64 pb-0 border-t border-gray-900">
+    <section ref={ref} id="contact" className="bg-white w-full min-h-screen relative overflow-hidden flex items-end pt-20 sm:pt-32 md:pt-64 pb-0 border-t border-gray-900">
       {/* Background Text */}
       <motion.div
         style={{ y }}
         className="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-start px-6 md:px-16 overflow-hidden pointer-events-none z-0 pt-8 md:pt-10"
       >
         <h1
-          className="text-[16vw] sm:text-[13vw] leading-[0.8] font-black text-white uppercase tracking-wide select-none scale-y-[1.2] sm:scale-y-[1.6] origin-top mt-4"
+          className="text-[16vw] sm:text-[13vw] leading-[0.8] font-black text-black uppercase tracking-wide select-none scale-y-[1.2] sm:scale-y-[1.6] origin-top mt-4"
           style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
         >
           Contact
@@ -55,7 +55,7 @@ const Contact = () => {
       <div className="relative z-10 w-full flex justify-center items-end px-6 md:px-16">
         <div
           data-aos="fade-up"
-          className="bg-[#ff2a2a] w-full max-w-5xl p-8 md:p-16 rounded-t-3xl text-white flex flex-col justify-between"
+          className="bg-[#1E3A8A] w-full max-w-5xl p-8 md:p-16 rounded-t-3xl text-white flex flex-col justify-between"
         >
           <div className="text-xs font-bold tracking-[0.2em] mb-12 md:mb-20 uppercase opacity-90">
             Reach Us
@@ -135,7 +135,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#1E3A8A] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "sending" && "Sending..."}
                     {status === "sent" && "Sent! ✓"}
@@ -156,7 +156,7 @@ const Contact = () => {
                   <p className="text-green-200 font-bold">✅ Message sent! I'll get back to you soon.</p>
                 )}
                 {status === "error" && (
-                  <p className="text-red-200 font-bold">❌ Something went wrong. Please try again.</p>
+                  <p className="text-blue-200 font-bold">❌ Something went wrong. Please try again.</p>
                 )}
               </div>
             </div>

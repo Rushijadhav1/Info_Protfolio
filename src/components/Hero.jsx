@@ -31,8 +31,10 @@ export default function Hero() {
   "
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Navy Blue Overlay */}
+      <div className="absolute inset-0 z-10"
+        style={{ background: "linear-gradient(120deg, rgba(30,58,138,0.82) 0%, rgba(30,58,138,0.55) 50%, rgba(30,58,138,0.25) 100%)" }}
+      />
 
       {/* Content */}
       <div
@@ -58,7 +60,7 @@ export default function Hero() {
         >
           Hi, I'm a
           <br />
-          <span className="text-[#E8180C]">Full Stack </span>Developer
+          <span className="text-[#4b7fee]">Full Stack </span>Developer
         </h1>
 
         {/* Description */}
@@ -75,7 +77,7 @@ export default function Hero() {
         <div className="flex gap-4 mt-8 flex-wrap">
           <a
             href="#projects"
-            className="bg-[#E8180C] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base no-underline hover:scale-105 hover:bg-red-700 transition-all shadow-lg shadow-black/40"
+            className="bg-[#577cce] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base no-underline hover:scale-105 hover:bg-blue-700 transition-all shadow-lg shadow-blue-900/40"
           >
             View My Work
           </a>
