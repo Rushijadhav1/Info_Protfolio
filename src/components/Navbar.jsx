@@ -49,7 +49,7 @@ export default function Navbar() {
         <div className="absolute top-full left-0 right-0 bg-white backdrop-blur-lg p-6 flex flex-col gap-4 md:hidden border-t border-gray-200">
           {links.map((l) => (
             <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)}
-              className="text-white text-lg font-semibold no-underline hover:text-[#1E3A8A] transition-colors py-1">
+              className="text-[#111827] text-lg font-semibold no-underline hover:text-[#1E3A8A] transition-colors py-1">
               {l}
             </a>
           ))}
